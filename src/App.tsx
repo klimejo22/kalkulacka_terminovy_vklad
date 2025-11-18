@@ -1,11 +1,29 @@
 import { useState } from 'react'
 import './App.css'
 import BankOptions from './components/BankOptions'
+import banks from './utils/banks'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [amount, setAmount] = useState(0)
+  const [selectedBank, setSelectedBank] = useState("")
   
+  const checkInput = () : Boolean => {
+    if (selectedBank === null || selectedBank === "default") {
+      return false
+    }
+
+    return Object.keys(banks).some((key) => {
+      return key === selectedBank
+    })
+
+  }
+  const handleClick = () => {
+    if (!checkInput()) {
+      return
+    }
+    
+    const interest = amount * (banks[selectedBank] / 100)
+  }
 
   return (
     <>
@@ -24,14 +42,17 @@ function App() {
 
         <div className={"row"}>
           <p>Banka</p>
-          <select id="bank" name="bank" required>
-            <option value="">— vyberte banku —</option>
+          <select id="bank"
+                  name="bank"
+                  onChange={(e) => setSelectedBank(e.target.value)} 
+                  required>
+            <option value="default">— vyberte banku —</option>
             <BankOptions></BankOptions>
           </select>
         </div>
 
 
-        <button type="submit">Potvrdit</button>
+        <button onClick={handleClick}>Potvrdit</button>
         </form>
       </main>
     </>
