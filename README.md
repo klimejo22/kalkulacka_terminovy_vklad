@@ -2,6 +2,7 @@
 Projekt na React číslo 2
 
 Kalkulačka na termínové vklady, uživatel zadá částku, vybere banku a aplikace vypočítá zisk po úrocích a dani za jeden rok.
+Odkaz na tento projekt je https://junglediff.cz/terminovakalkulacka/
 
 ## Sekce naprogramované chatem
 ### Veškeré HTML + CSS

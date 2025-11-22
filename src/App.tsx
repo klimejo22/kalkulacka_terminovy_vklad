@@ -56,7 +56,7 @@ function App() {
       const result = Math.round(netInterest * 100) / 100;
       setResults((prev) => [{ result, bank: bankAliases[selectedBank] }, ...prev]);
     }
-    
+
   }
 
   return (
