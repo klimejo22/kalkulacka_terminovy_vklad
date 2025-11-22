@@ -1,6 +1,29 @@
 # kalkulacka_terminovy_vklad
-Projekt na react cislo 2
+Projekt na React číslo 2
 
-Kalkulacka na terminove vklady, uzivatel zada castku, vybere banku a aplikace vypocita zisk po urocich a dani za jeden rok
+Kalkulačka na termínové vklady, uživatel zadá částku, vybere banku a aplikace vypočítá zisk po úrocích a dani za jeden rok.
 
-## Sekce naprogramovane chatem
+## Sekce naprogramované chatem
+### Veškeré HTML + CSS
+
+### Oprava výpočtu (App.tsx od řádku 37 po 40)
+
+```typescript
+const interest = Number(amount) * Number(banks[bankAliases[selectedBank]]);
+const netInterest = interest * (1 - RATE);
+
+setResult(Math.round(netInterest * 100) / 100);
+```
+
+### removeDiacritics.ts, celý
+
+```typescript
+export const removeDiacritics = (str: string) => {
+    return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "");
+}
+
+export default removeDiacritics;
+```
