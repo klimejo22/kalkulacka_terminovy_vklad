@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import BankOptions from './components/BankOptions'
 import banks from './utils/banks'
 import Result from './components/Result'
 import removeDiacritics from './utils/removeDiacritics'
 import bankAliases from './utils/bankAliases'
 import { AmountInput } from './components/AmountInput'
+import { BankInput } from './components/BankInput'
 
 function App() {
   const [amount, setAmount] = useState(-1)
@@ -50,19 +50,8 @@ function App() {
           amount={amount}
           setAmount={setAmount}
         ></AmountInput>
-
-        <div className={"row"}>
-          <p>Banka</p>
-          <select
-            id="bank"
-            name="bank"
-            onChange={(e) => setSelectedBank(e.target.value)}
-            required
-          >
-            <option value="default">— vyberte banku —</option>
-            <BankOptions></BankOptions>
-          </select>
-        </div>
+        
+        <BankInput setSelectedBank={setSelectedBank}></BankInput>
 
         <button onClick={handleClick}>Potvrdit</button>
 
