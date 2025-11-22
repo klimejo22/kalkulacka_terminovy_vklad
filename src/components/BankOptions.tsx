@@ -2,7 +2,7 @@ import banks from "../utils/banks"
 import removeDiacritics from "../utils/removeDiacritics"
 
 export const BankOptions = () => {
-    console.log(Object.entries(banks))
+    // console.log(Object.entries(banks))
     
     return (
         

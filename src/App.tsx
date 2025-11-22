@@ -32,28 +32,34 @@ function App() {
         <h2>Platba</h2>
 
 
-        <form action="/submit" method="post">
-          <div className={"row"}>
-          <p>Částka</p>
-          <input id="amount" name="amount" type="number" placeholder="0" required />
-          <div className={"hint"}>Zadejte částku v Kč</div>
-        </div>
-
-
         <div className={"row"}>
-          <p>Banka</p>
-          <select id="bank"
-                  name="bank"
-                  onChange={(e) => setSelectedBank(e.target.value)} 
-                  required>
-            <option value="default">— vyberte banku —</option>
-            <BankOptions></BankOptions>
-          </select>
-        </div>
+            <p>Částka</p>
+            <input
+              id="amount"
+              name="amount"
+              type="number"
+              placeholder="0"
+              onChange={(e) => setAmount(Number(e.target.value))}
+              required />
+            <div className={"hint"}>Zadejte částku v Kč</div>
+          </div>
 
 
-        <button onClick={handleClick}>Potvrdit</button>
-        </form>
+          <div className={"row"}>
+            <p>Banka</p>
+            <select
+              id="bank"
+              name="bank"
+              onChange={(e) => setSelectedBank(e.target.value)} 
+              required
+            >
+              <option value="default">— vyberte banku —</option>
+              <BankOptions></BankOptions>
+            </select>
+          </div>
+
+
+          <button onClick={handleClick}>Potvrdit</button>
       </main>
     </>
   )
