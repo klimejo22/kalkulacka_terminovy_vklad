@@ -5,6 +5,7 @@ import banks from './utils/banks'
 import Result from './components/Result'
 import removeDiacritics from './utils/removeDiacritics'
 import bankAliases from './utils/bankAliases'
+import { AmountInput } from './components/AmountInput'
 
 function App() {
   const [amount, setAmount] = useState(-1)
@@ -48,34 +49,17 @@ function App() {
     setResult(Math.round(netInterest * 100) / 100);
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(Number(e.target.value))
-    if (amount < 0) {
-      setAmount(0)
-      e.target.value = "0"
-    }
-  }
-
   return (
     <>
       <h1>Kalkulačka termínovaných vkladů</h1>
       <main className={"card"}>
         <h2>Platba</h2>
 
-        <div className={"row"}>
-          <p>Částka</p>
-          <input
-            id="amount"
-            name="amount"
-            type="number"
-            placeholder="0"
-            min="0"
-            onChange={(e) => handleChange(e)}
-            required
-          />
-          <div className={"hint"}>Zadejte částku v Kč</div>
-        </div>
-
+        <AmountInput
+          amount={amount}
+          setAmount={setAmount}
+        ></AmountInput>
+        
         <div className={"row"}>
           <p>Banka</p>
           <select
