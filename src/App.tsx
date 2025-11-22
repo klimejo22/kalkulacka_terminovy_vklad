@@ -2,27 +2,58 @@ import { useState } from 'react'
 import './App.css'
 import BankOptions from './components/BankOptions'
 import banks from './utils/banks'
+import Result from './components/Result'
+import removeDiacritics from './utils/removeDiacritics'
+import bankAliases from './utils/bankAliases'
 
 function App() {
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(-1)
   const [selectedBank, setSelectedBank] = useState("")
+  const [result, setResult] = useState(-1)
+
+  const RATE = 0.15
   
   const checkInput = () : Boolean => {
     if (selectedBank === null || selectedBank === "default") {
       return false
     }
 
+    if (amount < 0) {
+      return false
+    }
+
     return Object.keys(banks).some((key) => {
-      return key === selectedBank
+      console.log("Vybrana banka: " + selectedBank)
+      console.log("Banka bez fce: " + key)
+      console.log("Banka s fci: " + removeDiacritics(key))
+      console.log(removeDiacritics(key) === selectedBank)
+      return removeDiacritics(key) === selectedBank
     })
 
   }
   const handleClick = () => {
     if (!checkInput()) {
+      console.log("Neco je spatne")
       return
     }
     
-    const interest = amount * (banks[selectedBank] / 100)
+    const interest = Number(amount) * Number(banks[bankAliases[selectedBank]])
+    const netInterest = interest * (1 - RATE)
+    
+    console.log("ZACATEK HANDLE")
+    console.log("Interest: " + interest)
+    console.log("net: " + netInterest)
+    console.log("result: " + Math.round(netInterest * 100) / 100)
+    
+    setResult(Math.round(netInterest * 100) / 100);
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number(e.target.value))
+    if (amount < 0) {
+      setAmount(0)
+      e.target.value = "0"
+    }
   }
 
   return (
@@ -31,37 +62,40 @@ function App() {
       <main className={"card"}>
         <h2>Platba</h2>
 
+        <div className={"row"}>
+          <p>Částka</p>
+          <input
+            id="amount"
+            name="amount"
+            type="number"
+            placeholder="0"
+            min="0"
+            onChange={(e) => handleChange(e)}
+            required
+          />
+          <div className={"hint"}>Zadejte částku v Kč</div>
+        </div>
 
         <div className={"row"}>
-            <p>Částka</p>
-            <input
-              id="amount"
-              name="amount"
-              type="number"
-              placeholder="0"
-              onChange={(e) => setAmount(Number(e.target.value))}
-              required />
-            <div className={"hint"}>Zadejte částku v Kč</div>
-          </div>
+          <p>Banka</p>
+          <select
+            id="bank"
+            name="bank"
+            onChange={(e) => setSelectedBank(e.target.value)}
+            required
+          >
+            <option value="default">— vyberte banku —</option>
+            <BankOptions></BankOptions>
+          </select>
+        </div>
 
+        <button onClick={handleClick}>Potvrdit</button>
 
-          <div className={"row"}>
-            <p>Banka</p>
-            <select
-              id="bank"
-              name="bank"
-              onChange={(e) => setSelectedBank(e.target.value)} 
-              required
-            >
-              <option value="default">— vyberte banku —</option>
-              <BankOptions></BankOptions>
-            </select>
-          </div>
-
-
-          <button onClick={handleClick}>Potvrdit</button>
+        <Result result={result}></Result>
+        
       </main>
-    </>
+</>
+
   )
 }
 
