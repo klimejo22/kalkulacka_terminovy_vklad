@@ -27,7 +27,9 @@ export const removeDiacritics = (str: string) => {
 
 export default removeDiacritics;
 ```
+
 ### Vraceni vysledku ve formatu ResultProps
+
 ```typescript
 if (selectedBank === "all") {
     const allResults: ResultProps[] = Object.keys(banks).map((bankKey) => {
@@ -43,4 +45,10 @@ if (selectedBank === "all") {
     const result = Math.round(netInterest * 100) / 100;
     setResults((prev) => [{ result, bank: bankAliases[selectedBank] }, ...prev]);
 }
+```
+
+### Oddelovani radu cisel (Result.tsx, 12)
+
+```tsx
+<h3>Výsledek pro banku {bank}: {result.toLocaleString('cs-CZ')} Kč</h3>
 ```

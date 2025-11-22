@@ -9,7 +9,7 @@ export const Result: React.FC<ResultProps> = ({ result, bank}) => {
     if (result > 0) {
         return (
             <div className="result-block">
-                <h3>Výsledek pro banku {bank}: {result} Kč</h3>
+                <h3>Výsledek pro banku {bank}: {result.toLocaleString('cs-CZ')} Kč</h3>
             </div>
         );    
     }
