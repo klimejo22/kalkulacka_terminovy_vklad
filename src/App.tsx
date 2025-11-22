@@ -24,10 +24,6 @@ function App() {
     }
 
     return Object.keys(banks).some((key) => {
-      console.log("Vybrana banka: " + selectedBank)
-      console.log("Banka bez fce: " + key)
-      console.log("Banka s fci: " + removeDiacritics(key))
-      console.log(removeDiacritics(key) === selectedBank)
       return removeDiacritics(key) === selectedBank
     })
 
@@ -40,11 +36,6 @@ function App() {
     
     const interest = Number(amount) * Number(banks[bankAliases[selectedBank]])
     const netInterest = interest * (1 - RATE)
-    
-    console.log("ZACATEK HANDLE")
-    console.log("Interest: " + interest)
-    console.log("net: " + netInterest)
-    console.log("result: " + Math.round(netInterest * 100) / 100)
     
     setResult(Math.round(netInterest * 100) / 100);
   }
@@ -59,7 +50,7 @@ function App() {
           amount={amount}
           setAmount={setAmount}
         ></AmountInput>
-        
+
         <div className={"row"}>
           <p>Banka</p>
           <select
