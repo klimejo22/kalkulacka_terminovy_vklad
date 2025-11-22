@@ -5,6 +5,7 @@ Kalkulačka na termínové vklady, uživatel zadá částku, vybere banku a apli
 
 ## Sekce naprogramované chatem
 ### Veškeré HTML + CSS
+HTML a CSS je automaticky od vite
 
 ### Oprava výpočtu (App.tsx od řádku 37 po 40)
 

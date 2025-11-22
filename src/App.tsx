@@ -57,8 +57,6 @@ function App() {
       setResults((prev) => [{ result, bank: bankAliases[selectedBank] }, ...prev]);
     }
     
-    
-    // setResult(Math.round(netInterest * 100) / 100);
   }
 
   return (
