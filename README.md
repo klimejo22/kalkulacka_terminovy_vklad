@@ -27,3 +27,20 @@ export const removeDiacritics = (str: string) => {
 
 export default removeDiacritics;
 ```
+### Vraceni vysledku ve formatu ResultProps
+```typescript
+if (selectedBank === "all") {
+    const allResults: ResultProps[] = Object.keys(banks).map((bankKey) => {
+    const interest = Number(amount) * Number(banks[bankKey]);
+    const netInterest = interest * (1 - RATE);
+    const result = Math.round(netInterest * 100) / 100;
+    return { result, bank: bankKey };
+    });
+    setResults((prev) => [...allResults, ...prev]);
+} else {
+    const interest = Number(amount) * Number(banks[bankAliases[selectedBank]]);
+    const netInterest = interest * (1 - RATE);
+    const result = Math.round(netInterest * 100) / 100;
+    setResults((prev) => [{ result, bank: bankAliases[selectedBank] }, ...prev]);
+}
+```

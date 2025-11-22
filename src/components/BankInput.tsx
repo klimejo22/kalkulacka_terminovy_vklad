@@ -17,6 +17,7 @@ export const BankInput : React.FC<BankInputProps> = ({setSelectedBank}) => {
                 required
             >
             <option value="default">— vyberte banku —</option>
+            <option value="all">Všechny banky</option>
             <BankOptions></BankOptions>
             </select>
         </div>
