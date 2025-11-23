@@ -10,7 +10,6 @@ import { BankInput } from './components/BankInput'
 function App() {
   const [amount, setAmount] = useState(-1)
   const [selectedBank, setSelectedBank] = useState("")
-  // const [result, setResult] = useState(-1)
 
   const [results, setResults] = useState<ResultProps[]>([])
 
@@ -49,7 +48,7 @@ function App() {
         const result = Math.round(netInterest * 100) / 100;
         return { result, bank: bankKey };
       });
-      setResults((prev) => [...allResults, ...prev]);
+      setResults((prev) => [...allResults, ...prev]); // Destrukturuje array allResults a da ho do predu arraye
     } else {
       const interest = Number(amount) * Number(banks[bankAliases[selectedBank]]);
       const netInterest = interest * (1 - RATE);

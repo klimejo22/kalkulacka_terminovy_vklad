@@ -10,8 +10,8 @@ export const AmountInput : React.FC<AmountInputProps> = ({amount, setAmount}) =>
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(Number(e.target.value))
         if (amount < 0) {
-        setAmount(0)
-        e.target.value = "0"
+            setAmount(0)
+            e.target.value = "0"
         }
     }
     
