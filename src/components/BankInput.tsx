@@ -24,3 +24,5 @@ export const BankInput : React.FC<BankInputProps> = ({setSelectedBank}) => {
         </>
     )
 }
+
+export default BankInput;

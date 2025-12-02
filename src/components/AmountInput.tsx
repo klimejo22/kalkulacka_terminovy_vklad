@@ -33,3 +33,5 @@ export const AmountInput : React.FC<AmountInputProps> = ({amount, setAmount}) =>
         </>
     )
 }
+
+export default AmountInput;
