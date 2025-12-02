@@ -8,8 +8,8 @@ import { AmountInput } from './components/AmountInput'
 import { BankInput } from './components/BankInput'
 
 function App() {
-  const [amount, setAmount] = useState(0)
-  const [selectedBank, setSelectedBank] = useState("")
+  const [amount, setAmount] = useState<number>(0)
+  const [selectedBank, setSelectedBank] = useState<string>("")
 
   const [results, setResults] = useState<ResultProps[]>([])
 
