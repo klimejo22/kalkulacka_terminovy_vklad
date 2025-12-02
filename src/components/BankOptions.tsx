@@ -5,7 +5,7 @@ export const BankOptions = () => {
     return (
         <>
             {Object.entries(banks).map(([key, value]) => {
-                return (<option key={key} value={removeDiacritics(key)}>{key} - {value}%</option>)
+                return (<option key={key} value={removeDiacritics(key)}>{key} - {value} % p.a.</option>)
             })}
         </>
     )

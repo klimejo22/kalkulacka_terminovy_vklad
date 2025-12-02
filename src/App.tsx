@@ -8,7 +8,7 @@ import { AmountInput } from './components/AmountInput'
 import { BankInput } from './components/BankInput'
 
 function App() {
-  const [amount, setAmount] = useState(-1)
+  const [amount, setAmount] = useState(0)
   const [selectedBank, setSelectedBank] = useState("")
 
   const [results, setResults] = useState<ResultProps[]>([])
